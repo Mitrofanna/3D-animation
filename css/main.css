@@ -9,8 +9,9 @@
   --index: calc(1vw + 1vh); /*для адаптивности и корректного отображения на разных экранах*/
   --gutter: 30px; /*отступы между элементами*/
   --side-small: 26;
-  --size-big: 36;
+  --side-big: 36;
   --dept: 4000px;
+  --transition: .75s cubic-bezier(.075, .5, 0, 1);
 }
 
 @font-face {
@@ -31,7 +32,8 @@ body {
   font-family: railway_c, sans-serif;
   font-size: calc(var(--index) * .8); /*добавляет адаптивность шрифту*/
   line-height: 1.75;
-  height: calc(var(--dept));
+  height: var(--dept);
+  font-weight: 300;
 }
 
 .container {
@@ -53,6 +55,26 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity .75s ease; /*для плавного изменения opacity*/
+  transition: var(--transition),opacity .75s ease; /*для плавного изменения opacity*/
   will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.frame__title {
+  font-weight: 100;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: calc(var(--index) * 3.3);
+}
+
+.frame__media {
+  position: relative;
+  height: calc(var(--index) * var(--side-big));
+  width: calc(var(--index) * var(--side-small));
+  background-position: center;
+  background-size: cover;
+}
+
+.frame__media--left {
+  right: calc(var(--side-small) / 2 * var(--index))
 }
